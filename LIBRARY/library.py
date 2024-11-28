@@ -13,7 +13,15 @@ class Library:
         try:
             with open(self.filename, 'r') as file:
                 data = json.load(file)
-            return [Book(**book_dict) for book_dict in data]
+            return [
+                Book(
+                    book_dict['id'],
+                    book_dict['title'],
+                    book_dict['author'],
+                    book_dict['year']
+                )
+                for book_dict in data
+            ]
         except FileNotFoundError:
             return []
 
